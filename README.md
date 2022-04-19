@@ -39,8 +39,8 @@ cargo build --release
 ./target/release/substrate-ndn --dev
 ```
 
-If you are intrested running a node on Native Derivatives Test Network you can contact <link>smartrib3@digitalfrybead.com</link>
-ki
+If you are intrested running a node on Native Derivatives Test Network you can contact <link href="smartrib3@digitalfrybead.com"></link>
+
 
 
  Build spec, `./target/release/substrate-ndn build-spec --chain staging > ndn-staging.json`
