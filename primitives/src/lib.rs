@@ -1,4 +1,4 @@
-//! Low-level types used throughout the Substrate stencil code.
+//! Low-level types used throughout the SMARTRIB3 ndn code.
 
 #![warn(missing_docs)]
 #![cfg_attr(not(feature = "std"), no_std)]

@@ -1,8 +1,8 @@
 <div align="center">
 
-  <h1><code>substrate-stencil</code></h1>
+  <h1><code>SMARTRIB3-NDN</code></h1>
 
-  <strong>A template for kick starting a Rust and Blockchain project using <a href="https://github.com/paritytech/substrate">Substrate</a>.</strong>
+  <strong>Next generation blockchain being developed for tribal communities using <a href="https://github.com/paritytech/substrate">Substrate</a> framwork.</strong>
 
   <h3>
     <a href="https://substrate.io/">Docs</a>
@@ -12,9 +12,9 @@
 
 </div>
 
-## Features
+Proof of stake Testnet based on the [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template).
 
-This template includes the minimum required components to start a PoS testnet, inspired by [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template).
+Featuring custom pallets
 
 * Consensus related pallets: Babe & GRANDPA
 * Staking related pallets: staking, session, authorship, im-online, offences, utility
@@ -26,37 +26,40 @@ This template includes the minimum required components to start a PoS testnet, i
 
 Follow the steps below to get started.
 
-### Rust Setup
+Install rustup:
 
 First, complete the [Dev Docs Installation](https://docs.substrate.io/v3/getting-started/installation/).
 
-### Build and Run
+Compile:
 
 Use the following command to build the node and run it after build successfully:
 
 ```sh
 cargo build --release
-./target/release/substrate-stencil --dev
+./target/release/substrate-ndn --dev
 ```
 
-## Run public testnet
+If you are intrested running a node on Native Derivatives Test Network you can contact <link>smartrib3@digitalfrybead.com</link>
+ki
 
-* Modify the genesis config in chain_spec.rs
-* Build spec, `./target/release/substrate-stencil build-spec --chain staging > stencil-staging.json`
-* Change original spec to encoded raw spec, `./target/release/substrate-stencil build-spec --chain=stencil-staging.json --raw > stencil-staging-raw.json`
-* Start your bootnodes, node key can be generate with command `./target/release/substrate-stencil key generate-node-key`.
+
+ Build spec, `./target/release/substrate-ndn build-spec --chain staging > ndn-staging.json`
+ Change original spec to encoded raw spec, `./target/release/substrate-ndn build-spec --chain=ndn-staging.json --raw > ndn-staging-raw.json`
+ Start your bootnodes, node key can be generate with command `./target/release/substrate-ndn key generate-node-key`.
+
+ 
   ```shell
-  ./target/release/substrate-stencil \
+  ./target/release/substrate-ndn \
        --node-key <your-node-key> \
        --base-path /tmp/bootnode1 \
-       --chain stencil-staging-raw.json \
+       --chain ndn-staging-raw.json \
        --name bootnode1
   ```
 * Start your initial validators,
   ```shell
-  ./target/release/substrate-stencil \
+  ./target/release/substrate-ndn \
       --base-path  /tmp/validator1 \
-      --chain   stencil-staging-raw.json \
+      --chain   ndn-staging-raw.json \
       --bootnodes  /ip4/<your-bootnode-ip>/tcp/30333/p2p/<your-bootnode-peerid> \
 	    --port 30336 \
 	    --ws-port 9947 \
@@ -64,8 +67,3 @@ cargo build --release
       --name  validator1 \
       --validator
   ```
-* [Insert session keys](https://substrate.dev/docs/en/tutorials/start-a-private-network/customchain#add-keys-to-keystore)
-* Attract enough validators from community in waiting
-* Call force_new_era in staking pallet with sudo, rotate to PoS validators
-* Enable governance, and remove sudo
-* Enable transfer and other functions
