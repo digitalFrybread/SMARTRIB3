@@ -50,7 +50,7 @@ If you are intrested running a node on Native Derivatives Test Network you can c
  
   ```shell
   ./target/release/substrate-ndn \
-       --node-key <your-node-key> \
+       --node-key 0x74a8cfbadb5d2b0178ec124791bfa8346ac3550a4f689923c806428090055277 \
        --base-path /tmp/bootnode1 \
        --chain ndn-staging-raw.json \
        --name bootnode1
@@ -58,12 +58,12 @@ If you are intrested running a node on Native Derivatives Test Network you can c
 * Start your initial validators,
   ```shell
   ./target/release/substrate-ndn \
+      --node-key 0x74a8cfbadb5d2b0178ec124791bfa8346ac3550a4f689923c806428090055277 \
       --base-path  /tmp/validator1 \
       --chain   ndn-staging-raw.json \
-      --bootnodes  /ip4/<your-bootnode-ip>/tcp/30333/p2p/<your-bootnode-peerid> \
 	    --port 30336 \
 	    --ws-port 9947 \
-	    --rpc-port 9936 \
+	    --rpc-port 9933 \
       --name  validator1 \
       --validator
   ```

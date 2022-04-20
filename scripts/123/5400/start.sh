@@ -1,1 +1,1 @@
-./target/release/substrate --chain staging -d data/validator1 --name validator1 --in-peers 256 --validator --ws-external --rpc-cors all --rpc-methods=unsafe --node-key 0x74a8cfbadb5d2b0178ec124791bfa8346ac3550a4f689923c806428090055277
+./target/release/substrate-ndn --chain ndn-staging-raw.json -d data/validator1 --name validator1 --in-peers 256 --validator --ws-external --rpc-cors all --rpc-methods=unsafe --node-key 0x2209410e5bd1653ac07cd2d61ded6f9f1f9b2c6af3cafbf0294e7e4300182579
