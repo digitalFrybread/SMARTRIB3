@@ -1,0 +1,10 @@
+{
+    "jsonrpc":"2.0",
+    "id":1,
+    "method":"author_insertKey",
+    "params": [
+        "imol",
+        "weekend elegant arm warrior shoe ticket sing bus addict culture zone cash//1//im_online",
+        "0x90fcd9ff93b62740fccc28a29e7feef69af7d08ed7ef844428b0ebfb90417555"
+    ]
+}

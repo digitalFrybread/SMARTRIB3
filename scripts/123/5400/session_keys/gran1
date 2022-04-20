@@ -1,0 +1,10 @@
+{
+    "jsonrpc":"2.0",
+    "id":1,
+    "method":"author_insertKey",
+    "params": [
+        "gran",
+        "weekend elegant arm warrior shoe ticket sing bus addict culture zone cash//1//grandpa",
+        "0x73fa2924b32322dda47a44e9b41c3e563ef5f2fee41abf83b4f778d3f3e4282d"
+    ]
+}

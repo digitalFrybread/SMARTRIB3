@@ -1,0 +1,187 @@
+Substrate Simple Template
+
+A simple template to bootstrap a Substrate node with BABE(Nominated Proof of Stake) consensus
+Getting Started
+
+Follow the steps below to get started with the Simple Template.
+Rust Setup
+
+First, complete the basic Rust setup instructions.
+
+configure the Rust toolchain
+
+rustup default nightly-2021-03-01
+rustup target add wasm32-unknown-unknown --toolchain nightly-2021-03-01
+
+Run
+
+Use Rust's native cargo command to build and launch the template node:
+
+cargo run --release -- --dev --tmp
+
+Build
+
+The cargo run command will perform an initial build. Use the following command to build the node without launching it:
+
+cargo build --release
+
+Embedded Docs
+
+Once the project has been built, the following command can be used to explore all parameters and subcommands:
+
+./target/release/substrate -h
+
+Run
+
+The provided cargo run command will launch a temporary node and its state will be discarded after you terminate the process. After the project has been built, there are other ways to launch the node.
+Single-Node Development Chain
+
+This command will start the single-node development chain with persistent state:
+
+./target/release/substrate --dev
+
+Purge the development chain's state:
+
+./target/release/substrate purge-chain --dev
+
+Start the development chain with detailed logging:
+
+RUST_LOG=debug RUST_BACKTRACE=1 ./target/release/substrate -lruntime=debug --dev
+
+Connect with Polkadot-JS Apps Front-end
+
+Once the node template is running locally, you can connect it with Polkadot-JS Apps front-end to interact with your chain. Click here connecting the Apps to your local node template.
+Multi-Node Testnet
+Generate node key
+
+Generate pubic key from a secret phrase. This secret phrase is dedicated to development and should not be used in any other places.
+
+subkey inspect --scheme ed25519 "fire penalty pony chase gift loan grid mule tape wrestle stuff salute"
+
+Secret phrase `fire penalty pony chase gift loan grid mule tape wrestle stuff salute` is account:
+  Secret seed:       0x09c047c99b49d03c96f5915497cc5e7ffb0fce31b732abf35f2d7d1bfd89de13
+  Public key (hex):  0x74a8cfbadb5d2b0178ec124791bfa8346ac3550a4f689923c806428090055277
+  Public key (SS58): 5EhfZPbz9JVAXWmHpKA1zc6jpBZXS3ExvmrvZrjZ6AMa2Vzq
+  Account ID:        0x74a8cfbadb5d2b0178ec124791bfa8346ac3550a4f689923c806428090055277
+  SS58 Address:      5EhfZPbz9JVAXWmHpKA1zc6jpBZXS3ExvmrvZrjZ6AMa2Vzq
+
+Save this public key 0x74a8cfbadb5d2b0178ec124791bfa8346ac3550a4f689923c806428090055277
+Config validators' session keys
+
+Config validators secret phrase in prepare-test-net.sh.
+
+# Copy paste your mnemonic here.
+SECRET="weekend elegant arm warrior shoe ticket sing bus addict culture zone cash"
+
+This command will generate 3 validator session keys.
+
+sh scripts/prepare-test-net.sh 3
+
+(
+// 5C5u7H2cH6VWo9rqevGZt2AuMvg1556TWbTjjatdGkYNnhZb
+hex!["00e91f60e0f607d098eb3143fd646b3c220f8013544e0e5012110e95ef1cba13"].into(),
+// 5CDRcabWSuKmf4dcKSFYsMrE7bQLHRPa8ZR4aMbfewdGgnx2
+hex!["06a687b6ddd418ca5bc77a125795ec9a4827cae9cbc0a7cff2177d56315f3478"].into(),
+// 5EgmgED25XxfMBwEcsXoHi4hL2JmThThG6pvqmMx2nGY1ahR
+hex!["73fa2924b32322dda47a44e9b41c3e563ef5f2fee41abf83b4f778d3f3e4282d"].unchecked_into(),
+// 5H3RJbvMNXAoAcYrfrDpU7UiHAiwXxKUEDYJpR5Kbb1HAup1
+hex!["dc3233310f15a2b40f53495f0e2ffc9ee454c1337bc8111199b0cfdb06b2cc15"].unchecked_into(),
+// 5FLos8edEeUWMeFpnN5rzPL9tKJ6j9XcqtHsGixVmxZoXaT1
+hex!["90fcd9ff93b62740fccc28a29e7feef69af7d08ed7ef844428b0ebfb90417555"].unchecked_into(),
+),
+(
+//5DP3mCevjzqrYhJgPpQFkpoERKg55K422u5KiRGPQaoJEgRH
+hex!["3a39a8d0654e0f52b2ee8202ed3488e7a82650dde0daadaddbc8ea825e408d13"].into(),
+//5HeTTicL5u17JCkDhAwcAHUXMGEzXbDLjPYmNC5ahKhwaLgt
+hex!["f6eb0cff5244d7437ed659ac34e6ea66daa857f3d1c580f452b8512ae7fdba0f"].into(),
+//5FKFid7kAaVFkfbpShH8dzw3wJipiuGPruTzc6WB2WKMviUX
+hex!["8fcd640390db86812092a0b2b244aac9d8375be2c0a3434eb9062b58643c60fb"].unchecked_into(),
+//5G4AdD8rQ6MHp2K1L7vF1E43eX69JMZDQ1vknonsALwGQMwW
+hex!["b087cc20818f98e543c55989afccd3ec28c57e425dae970d9dd63cad806c1f6d"].unchecked_into(),
+//5DknzWSQVCpo7bNf2NnBsjb529K2WVpvGv6Q3kn9RgcFgoeQ
+hex!["4acf560d0aa80158ee06971c0ebbf4e6a1a407e6de2df16a003a765b73e63d7b"].unchecked_into(),
+//5DhZENrJzzaJL2MwLsQsvxARhhAPCVXdHxs2oSJuJLxhUsbg
+hex!["485746d4cc0f20b5581f24b30f91b34d49a7b96b85bb8ba202f354aea8e14b1f"].unchecked_into(),
+),
+(
+//5DJQ1NXeThmu2N5yQHZUsY64Lmgm95nnchpRWi1nSBU2rgod
+hex!["36ad94b252606800bc80869baf453663ac2e9276e83f0401107384c053552f3e"].into(),
+//5EWQq4ns7miu8B8ArsspZ9KBHX6gwjJXptJq5dbLgQucZvdc
+hex!["6c1386fd76e4eec0365a439db0decae0d5d715e33db934bc44be28f73df50674"].into(),
+//5EUsrdaXAAJ87Y7yCRdrYKeyHdTYbSr9tJFCYEy12CNap2v2
+hex!["6ae80477725a1e4f3194fac59286662ea491c9461cb54909432228351be3474a"].unchecked_into(),
+//5FHCHVMPD9VfpzMcGVyL7gqkq2Rd9NomkHFHP8BzP8isUBnh
+hex!["8e3b579b007999dce44a28bb266f73b54e6f7ec219c495ae23fe0dc3c101e158"].unchecked_into(),
+//5GRarw8oivnRh5ViPC9kH6ztbPNiyrfb61BitYz2YzhoqS4L
+hex!["c0dd89e234665e119ac8396af69c37d1956ffbf4a0173c21ee5872fea2366026"].unchecked_into(),
+//5CLfsFaNYPGQvpYkroN1qrWLt54Xpmn6shAxdE45bCy1cvgv
+hex!["0c2d3a4c604c4ad68e285cc1c401dd2665c1cd7193b16d4d9c854c27a9238a1a"].unchecked_into(),
+),
+
+Replace the session keys from vec![...] in node/cli/src/chain_spec.rs with above generated keys.
+
+fn staging_testnet_config_genesis() -> GenesisConfig {
+    let initial_authorities: Vec<(AccountId, AccountId, GrandpaId, BabeId, ImOnlineId, AuthorityDiscoveryId)> = vec![...];
+    #--snip--
+}
+
+Recompile
+
+cargo build --release
+
+Config root key
+
+Generate pubic key from a secret phrase. This secret phrase is dedicated to development and should not be used in any other places.
+
+subkey inspect --scheme sr25519 "blanket canoe genuine range young alter balcony polar expand burger delay priority"
+
+Secret phrase:       blanket canoe genuine range young alter balcony polar expand burger delay priority
+  Network ID:        substrate
+  Secret seed:       0xcd185e8d652bc17ce4c142959240a9f98a529168ed17fbbe47adb42c8a6565ed
+  Public key (hex):  0x780e0959fa6591345adcfc55a3ed242f6bbeb261c689ef7f56c9006530ea251c
+  Account ID:        0x780e0959fa6591345adcfc55a3ed242f6bbeb261c689ef7f56c9006530ea251c
+  Public key (SS58): 5En7mnn2XiZy9rUhLea1jMVsYXdTEHaeK2Tm6YcJ7jZBiRou
+  SS58 Address:      5En7mnn2XiZy9rUhLea1jMVsYXdTEHaeK2Tm6YcJ7jZBiRou
+
+Remove prefix 0x of public key, replace the root key in node/cli/src/chain_spec.rs
+
+let root_key: AccountId = hex![
+    // 5Fk6QsYKvDXxdXumGdHnNQ7V7FziREy6qn8WjDLEWF8WsbU3
+    "a2bf32e50edd79c181888da41c80c67c191e9e6b29d3f2efb102ca0e2b53c558"
+].into();
+
+Launch first node
+
+Launch first node with the public key above.
+
+./target/release/substrate --chain staging -d data/validator1 --name validator1 --in-peers 256 --validator --ws-external --rpc-cors all --rpc-methods=unsafe --node-key 0x74a8cfbadb5d2b0178ec124791bfa8346ac3550a4f689923c806428090055277
+
+Launch other two nodes
+
+./target/release/substrate --chain staging -d data/validator2 --name validator2 --validator --port 30334 --ws-port 9946 --rpc-port 9934 --ws-external --rpc-cors all --rpc-methods=unsafe --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWRm651Kd5GmsLTHJbgX5chQS5npx9ttLgo46UsegCMoNM
+
+./target/release/substrate --chain staging -d data/validator3 --name validator3 --validator --port 30335 --ws-port 9947 --rpc-port 9935 --ws-external --rpc-cors all --rpc-methods=unsafe --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWRm651Kd5GmsLTHJbgX5chQS5npx9ttLgo46UsegCMoNM
+
+Setup node session keys
+
+    Copy validators' session keys to babe1 ~ 3, gran1 ~ 3, imol1 ~ 3, audi1 ~ 3, add prefix 0x.
+
+    Fill right secret phrase
+
+    Run command to setup node session keys
+
+    cd scripts/session_keys
+    sh run.sh
+
+Re-launch nodes
+
+Re-launch all 3 nodes by running commands in section Launch first node and Launch other two nodes.
+
+The network will finalize blocks.
+
+2021-06-11 09:40:45  ✨ Imported #3 (0xf18c…97f0)
+2021-06-11 09:40:48  ✨ Imported #4 (0x4bdc…aa87)
+2021-06-11 09:40:48  💤 Idle (2 peers), best: #4 (0x4bdc…aa87), finalized #1 (0xad8e…f0aa), ⬇ 5.0kiB/s ⬆ 4.8kiB/s
+2021-06-11 09:40:51  ✨ Imported #5 (0x4064…6d67)
+2021-06-11 09:40:53  💤 Idle (2 peers), best: #5 (0x4064…6d67), finalized #3 (0xf18c…97f0), ⬇ 2.5kiB/s ⬆ 2.2kiB/s
+
